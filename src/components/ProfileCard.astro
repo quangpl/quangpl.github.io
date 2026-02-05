@@ -1,0 +1,46 @@
+---
+import site from '../data/site.json';
+import SocialLinks from './SocialLinks.astro';
+---
+<section class="rounded-2xl border border-[var(--border)] bg-[var(--bg-secondary)] overflow-hidden shadow-xl">
+  <!-- macOS-style header -->
+  <div class="flex items-center px-4 py-3 border-b border-[var(--border)] bg-gradient-to-b from-white/5 to-transparent">
+    <div class="flex gap-2">
+      <div class="w-3 h-3 rounded-full bg-red-500"></div>
+      <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+      <div class="w-3 h-3 rounded-full bg-green-500"></div>
+    </div>
+    <span class="flex-1 text-center text-xs text-[var(--text-secondary)] font-medium">Quang</span>
+    <div class="w-[52px]"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="p-8 flex flex-col md:flex-row items-center gap-6">
+    <img
+      src={site.avatar}
+      alt={site.name}
+      class="w-24 h-24 rounded-full ring-4 ring-[var(--accent)]/20 object-cover"
+      loading="eager"
+    />
+    <div class="text-center md:text-left flex-1">
+      <h1 class="text-3xl font-bold tracking-tight">
+        I'm {site.name}
+      </h1>
+      <p class="text-[var(--text-secondary)] mt-1 font-medium">
+        {site.tagline}
+      </p>
+      <p class="text-sm text-[var(--text-secondary)] mt-3 max-w-md">
+        {site.bio}
+      </p>
+      <div class="mt-4 flex items-center justify-center md:justify-start gap-4">
+        <SocialLinks links={site.social} />
+        <a
+          href={`mailto:${site.email}`}
+          class="text-sm px-4 py-2 rounded-lg bg-[var(--text-primary)] text-[var(--bg-primary)] font-medium hover:opacity-90 transition-opacity"
+        >
+          Contact
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,22 @@
+{
+  "projects": [
+    {
+      "title": "MarkX",
+      "icon": "https://i.imgur.com/OszzzIF.png",
+      "description": "Bookmarks and Highlights Manager",
+      "url": "https://chromewebstore.google.com/detail/markx-bookmarks-and-highl/ialfchbhcgcgpbpcihmceabgnnfoknjc"
+    },
+    {
+      "title": "JSON Toolbox",
+      "icon": "https://i.imgur.com/CRobNaN.png",
+      "description": "Effortless JSON Editing, Anywhere!",
+      "url": "https://chromewebstore.google.com/detail/json-toolbox/ldeginlonbaajghjihhmjegbebiideie"
+    },
+    {
+      "title": "Quick ChatGPT",
+      "icon": "https://i.imgur.com/bsplehh.png",
+      "description": "Using ChatGPT in browser popup directly without tab switching.",
+      "url": "https://chrome.google.com/webstore/detail/kkchdjfkhmniamlkomjfeeiojacbcfoe"
+    }
+  ]
+}

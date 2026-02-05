@@ -1,0 +1,20 @@
+---
+import projects from '../data/projects.json';
+import ProjectCard from './ProjectCard.astro';
+---
+<section class="mt-12">
+  <h2 class="text-xl font-semibold mb-6 flex items-center gap-2">
+    <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)]"></span>
+    Projects
+  </h2>
+  <div class="grid gap-4 md:grid-cols-2">
+    {projects.projects.map(project => (
+      <ProjectCard
+        title={project.title}
+        icon={project.icon}
+        description={project.description}
+        url={project.url}
+      />
+    ))}
+  </div>
+</section>

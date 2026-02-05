@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 5);
+---
+<section class="mt-12">
+  <div class="flex items-center justify-between mb-6">
+    <h2 class="text-xl font-semibold flex items-center gap-2">
+      <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)]"></span>
+      Recent Posts
+    </h2>
+    {posts.length > 0 && (
+      <a href="/blog" class="text-sm text-[var(--accent)] hover:underline">
+        View all →
+      </a>
+    )}
+  </div>
+
+  {posts.length > 0 ? (
+    <div class="space-y-4">
+      {posts.map(post => (
+        <a
+          href={`/blog/${post.id}`}
+          class="block p-4 rounded-xl border border-[var(--border)] hover:border-[var(--accent)]/50 hover:-translate-y-0.5 transition-all duration-200"
+        >
+          <time class="text-xs text-[var(--text-secondary)]">
+            {post.data.pubDate.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+            })}
+          </time>
+          <h3 class="font-medium mt-1">{post.data.title}</h3>
+          <p class="text-sm text-[var(--text-secondary)] mt-1 line-clamp-2">
+            {post.data.description}
+          </p>
+        </a>
+      ))}
+    </div>
+  ) : (
+    <p class="text-[var(--text-secondary)] text-sm">
+      No posts yet. Check back soon!
+    </p>
+  )}
+</section>

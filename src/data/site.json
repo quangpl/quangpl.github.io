@@ -1,0 +1,12 @@
+{
+  "name": "Quang",
+  "tagline": "Software Engineer",
+  "bio": "Enjoy life with code and ideas. Building tools that help developers work smarter.",
+  "email": "phanlequang99@gmail.com",
+  "avatar": "https://avatars.githubusercontent.com/u/36843088?v=4",
+  "social": [
+    { "platform": "twitter", "url": "https://twitter.com/quangpl99" },
+    { "platform": "github", "url": "https://github.com/quangpl" },
+    { "platform": "linkedin", "url": "https://www.linkedin.com/in/quang-phan-53348a189/" }
+  ]
+}

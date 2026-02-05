@@ -1,0 +1,19 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+---
+<header class="sticky top-0 z-50 backdrop-blur-lg bg-[var(--bg-primary)]/80 border-b border-[var(--border)]">
+  <nav class="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
+    <a href="/" class="font-semibold text-lg hover:text-[var(--accent)] transition-colors">
+      Quang
+    </a>
+    <div class="flex items-center gap-6">
+      <a
+        href="/blog"
+        class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors text-sm font-medium"
+      >
+        Blog
+      </a>
+      <ThemeToggle />
+    </div>
+  </nav>
+</header>

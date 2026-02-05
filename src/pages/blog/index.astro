@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+<BaseLayout
+  title="Blog - Quang"
+  description="Thoughts on software engineering, developer tools, and more."
+>
+  <h1 class="text-3xl font-bold mb-2">Blog</h1>
+  <p class="text-[var(--text-secondary)] mb-8">
+    Thoughts on software engineering, developer tools, and productivity.
+  </p>
+
+  {posts.length > 0 ? (
+    <div class="space-y-6">
+      {posts.map(post => (
+        <a
+          href={`/blog/${post.id}`}
+          class="block p-6 rounded-xl border border-[var(--border)] hover:border-[var(--accent)]/50 hover:-translate-y-1 transition-all duration-300"
+        >
+          <time class="text-sm text-[var(--text-secondary)]">
+            {post.data.pubDate.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+            })}
+          </time>
+          <h2 class="text-xl font-semibold mt-2">{post.data.title}</h2>
+          <p class="text-[var(--text-secondary)] mt-2">{post.data.description}</p>
+          {post.data.tags.length > 0 && (
+            <div class="flex flex-wrap gap-2 mt-3">
+              {post.data.tags.map(tag => (
+                <span class="text-xs text-[var(--accent)]">#{tag}</span>
+              ))}
+            </div>
+          )}
+        </a>
+      ))}
+    </div>
+  ) : (
+    <p class="text-[var(--text-secondary)]">
+      No posts yet. Check back soon!
+    </p>
+  )}
+</BaseLayout>

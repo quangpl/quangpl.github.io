@@ -1,0 +1,41 @@
+---
+interface Props {
+  title: string;
+  icon: string;
+  description: string;
+  url: string;
+}
+
+const { title, icon, description, url } = Astro.props;
+---
+<a
+  href={url}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="group block p-4 rounded-xl border border-[var(--border)] bg-[var(--bg-secondary)] hover:-translate-y-1 hover:shadow-lg hover:border-[var(--accent)]/30 transition-all duration-300"
+>
+  <div class="flex items-center gap-4">
+    <img
+      src={icon}
+      alt={title}
+      class="w-12 h-12 rounded-xl object-cover flex-shrink-0"
+      loading="lazy"
+    />
+    <div class="flex-1 min-w-0">
+      <h3 class="font-semibold group-hover:text-[var(--accent)] transition-colors truncate">
+        {title}
+      </h3>
+      <p class="text-sm text-[var(--text-secondary)] line-clamp-2">
+        {description}
+      </p>
+    </div>
+    <svg
+      class="w-5 h-5 text-[var(--text-secondary)] group-hover:translate-x-1 group-hover:text-[var(--accent)] transition-all flex-shrink-0"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    </svg>
+  </div>
+</a>

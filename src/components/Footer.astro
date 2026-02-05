@@ -1,0 +1,14 @@
+---
+const currentYear = new Date().getFullYear();
+---
+<footer class="border-t border-[var(--border)] mt-16">
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-[var(--text-secondary)]">
+      <p>&copy; {currentYear} Quang. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="/rss.xml" class="hover:text-[var(--text-primary)] transition-colors">RSS</a>
+        <a href="https://github.com/quangpl" target="_blank" rel="noopener" class="hover:text-[var(--text-primary)] transition-colors">GitHub</a>
+      </div>
+    </div>
+  </div>
+</footer>
