@@ -1,22 +1,22 @@
 {
   "projects": [
     {
-      "title": "MarkX",
-      "icon": "https://i.imgur.com/OszzzIF.png",
-      "description": "Bookmarks and Highlights Manager",
-      "url": "https://chromewebstore.google.com/detail/markx-bookmarks-and-highl/ialfchbhcgcgpbpcihmceabgnnfoknjc"
+      "title": "Clipboard Manager Pro",
+      "icon": "https://clipboardman.com/logo.png",
+      "description": "Instant search. Unlimited history. Zero setup.",
+      "url": "https://clipboardman.com"
+    },
+    {
+      "title": "ExtensionBooster",
+      "icon": "https://i.ibb.co/HWmKd2V/rocket-1.png",
+      "description": "The discovery platform for early-stage extensions. Get more users today!",
+      "url": "https://extensionbooster.com"
     },
     {
       "title": "JSON Toolbox",
       "icon": "https://i.imgur.com/CRobNaN.png",
       "description": "Effortless JSON Editing, Anywhere!",
       "url": "https://chromewebstore.google.com/detail/json-toolbox/ldeginlonbaajghjihhmjegbebiideie"
-    },
-    {
-      "title": "Quick ChatGPT",
-      "icon": "https://i.imgur.com/bsplehh.png",
-      "description": "Using ChatGPT in browser popup directly without tab switching.",
-      "url": "https://chrome.google.com/webstore/detail/kkchdjfkhmniamlkomjfeeiojacbcfoe"
     }
   ]
 }
