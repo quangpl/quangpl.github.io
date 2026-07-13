@@ -54,6 +54,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     justify-content: center;
     min-height: 100dvh;
     padding: clamp(1.5rem, 6vw, 6rem);
+    /* Reserve room so the centered statement never sits under the ticker */
+    padding-bottom: clamp(4rem, 7vw, 6.5rem);
     overflow: hidden;
     background: var(--paper);
     color: var(--ink);
@@ -215,5 +217,60 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   @media (prefers-reduced-motion: reduce) {
     .word, .dot, .shape, .label { animation: none; opacity: 1; transform: none; }
     .ticker__track { animation: none; }
+  }
+
+  /* ---- Responsive ---- */
+
+  /* Tablet & small laptops: pull the geometry inward, ease the type */
+  @media (max-width: 768px) {
+    .statement { font-size: clamp(3rem, 16vw, 7rem); }
+    .shape--square {
+      top: clamp(3rem, 11vh, 6rem);
+      right: clamp(1.25rem, 6vw, 3rem);
+      width: clamp(72px, 18vw, 140px);
+    }
+    .shape--circle {
+      bottom: clamp(5.5rem, 16vh, 8rem);
+      right: clamp(3.5rem, 16vw, 8rem);
+      width: clamp(48px, 12vw, 96px);
+    }
+    .shape--triangle {
+      top: clamp(2rem, 6vh, 4rem);
+      left: clamp(2.5rem, 34vw, 12rem);
+      border-left-width: clamp(28px, 6vw, 48px);
+      border-right-width: clamp(28px, 6vw, 48px);
+      border-bottom-width: clamp(48px, 10vw, 84px);
+    }
+  }
+
+  /* Phones */
+  @media (max-width: 480px) {
+    .stage {
+      padding: 1.5rem 1.25rem;
+      padding-bottom: 4.5rem;
+    }
+    .statement {
+      font-size: clamp(2.9rem, 17vw, 4.6rem);
+      letter-spacing: -0.02em;
+    }
+    .label { font-size: 0.62rem; letter-spacing: 0.13em; }
+    .label--tl { top: 1.25rem; left: 1.25rem; }
+    .label--tr { top: 1.25rem; right: 1.25rem; }
+    .label--br { bottom: 3.75rem; right: 1.25rem; }
+    .shape--square { top: 3.25rem; right: 1.25rem; width: 82px; }
+    .shape--triangle { top: 2.25rem; left: auto; right: 38%; }
+    .shape--circle { bottom: 5rem; right: 1.75rem; width: 58px; }
+  }
+
+  /* Short / landscape phones: shrink type, drop the busiest shapes */
+  @media (max-height: 480px) {
+    .stage {
+      justify-content: center;
+      padding-top: 2.25rem;
+      padding-bottom: 3.25rem;
+    }
+    .statement { font-size: clamp(2rem, 12vh, 4rem); }
+    .shape--triangle { display: none; }
+    .shape--circle { width: 44px; }
   }
 </style>
