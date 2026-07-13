@@ -1,14 +1,219 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ProfileCard from '../components/ProfileCard.astro';
-import ProjectsGrid from '../components/ProjectsGrid.astro';
-import BlogList from '../components/BlogList.astro';
 ---
 <BaseLayout
-  title="Quang - Software Engineer"
-  description="Personal portfolio and blog. Building tools that help people work smarter."
+  title="A real software engineer"
+  description="A real software engineer."
+  bare
 >
-  <ProfileCard />
-  <ProjectsGrid />
-  <BlogList />
+  <main class="stage" aria-label="A real software engineer">
+    <!-- Swiss grid backdrop -->
+    <div class="grid-lines" aria-hidden="true"></div>
+
+    <!-- Bauhaus geometry -->
+    <div class="shape shape--square" aria-hidden="true"></div>
+    <div class="shape shape--circle" aria-hidden="true"></div>
+    <div class="shape shape--triangle" aria-hidden="true"></div>
+
+    <!-- Corner labels -->
+    <span class="label label--tl">Portfolio &copy; 2026</span>
+    <span class="label label--tr">quang.asia</span>
+    <span class="label label--br">01&nbsp;/&nbsp;01</span>
+
+    <!-- The statement -->
+    <h1 class="statement">
+      <span class="line"><span class="word">A</span> <span class="word">Real</span></span>
+      <span class="line"><span class="word">Software</span></span>
+      <span class="line"><span class="word accent-word">Engineer</span><span class="dot" aria-hidden="true">.</span></span>
+    </h1>
+
+    <!-- Kinetic ticker -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track">
+        <span>Ships&nbsp;code &middot; Reads&nbsp;code &middot; Fixes&nbsp;code &middot; Repeat &middot;&nbsp;</span>
+        <span>Ships&nbsp;code &middot; Reads&nbsp;code &middot; Fixes&nbsp;code &middot; Repeat &middot;&nbsp;</span>
+      </div>
+    </div>
+  </main>
 </BaseLayout>
+
+<style>
+  /* Bold Swiss / Bauhaus palette */
+  .stage {
+    --paper: #ece9e1;
+    --ink: #0b0b0b;
+    --accent: #e6321f;   /* Bauhaus red */
+    --blue: #1740b3;     /* Bauhaus blue */
+    --yellow: #f2c200;   /* Bauhaus yellow */
+    --hair: rgba(11, 11, 11, 0.08);
+
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100dvh;
+    padding: clamp(1.5rem, 6vw, 6rem);
+    overflow: hidden;
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  :global([data-theme='dark']) .stage {
+    --paper: #0b0b0b;
+    --ink: #ece9e1;
+    --hair: rgba(236, 233, 225, 0.08);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme='light'])) .stage {
+      --paper: #0b0b0b;
+      --ink: #ece9e1;
+      --hair: rgba(236, 233, 225, 0.08);
+    }
+  }
+
+  /* Faint Swiss grid */
+  .grid-lines {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--hair) 1px, transparent 1px),
+      linear-gradient(90deg, var(--hair) 1px, transparent 1px);
+    background-size: clamp(48px, 8vw, 96px) clamp(48px, 8vw, 96px);
+    pointer-events: none;
+  }
+
+  /* Bauhaus geometry */
+  .shape {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+    animation: pop 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .shape--square {
+    top: clamp(3rem, 14vh, 9rem);
+    right: clamp(2rem, 9vw, 9rem);
+    width: clamp(90px, 16vw, 220px);
+    aspect-ratio: 1;
+    background: var(--accent);
+    animation-delay: 0.5s;
+  }
+  .shape--circle {
+    bottom: clamp(5rem, 20vh, 11rem);
+    right: clamp(6rem, 22vw, 20rem);
+    width: clamp(60px, 10vw, 150px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--blue);
+    animation: pop 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.65s forwards,
+               float 6s ease-in-out 1.4s infinite;
+  }
+  .shape--triangle {
+    top: clamp(2rem, 8vh, 6rem);
+    left: clamp(3rem, 30vw, 30rem);
+    width: 0;
+    height: 0;
+    border-left: clamp(35px, 5vw, 60px) solid transparent;
+    border-right: clamp(35px, 5vw, 60px) solid transparent;
+    border-bottom: clamp(60px, 9vw, 105px) solid var(--yellow);
+    animation-delay: 0.8s;
+  }
+
+  /* Corner labels */
+  .label {
+    position: absolute;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: clamp(0.6rem, 1.1vw, 0.8rem);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    opacity: 0;
+    animation: fade 0.8s ease 1s forwards;
+    z-index: 2;
+  }
+  .label--tl { top: clamp(1.5rem, 5vw, 3rem); left: clamp(1.5rem, 6vw, 6rem); }
+  .label--tr { top: clamp(1.5rem, 5vw, 3rem); right: clamp(1.5rem, 6vw, 6rem); }
+  .label--br {
+    bottom: clamp(4.5rem, 12vw, 6rem);
+    right: clamp(1.5rem, 6vw, 6rem);
+  }
+
+  /* The statement */
+  .statement {
+    position: relative;
+    z-index: 3;
+    margin: 0;
+    font-family: 'Anton', 'Inter', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 0.86;
+    letter-spacing: -0.01em;
+    font-size: clamp(3.4rem, 17vw, 15rem);
+  }
+  .line {
+    display: block;
+    overflow: hidden;
+  }
+  .word {
+    display: inline-block;
+    transform: translateY(110%);
+    animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .line:nth-child(1) .word:nth-child(1) { animation-delay: 0.05s; }
+  .line:nth-child(1) .word:nth-child(2) { animation-delay: 0.13s; }
+  .line:nth-child(2) .word { animation-delay: 0.21s; }
+  .line:nth-child(3) .word { animation-delay: 0.29s; }
+
+  .accent-word { color: var(--accent); }
+  .dot {
+    display: inline-block;
+    color: var(--blue);
+    transform: translateY(110%);
+    animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.37s forwards;
+  }
+
+  /* Kinetic ticker */
+  .ticker {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-top: 3px solid var(--ink);
+    background: var(--accent);
+    color: var(--paper);
+    overflow: hidden;
+    white-space: nowrap;
+    z-index: 2;
+  }
+  .ticker__track {
+    display: inline-flex;
+    padding: 0.55rem 0;
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: clamp(0.75rem, 1.5vw, 1rem);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    animation: marquee 18s linear infinite;
+  }
+  .ticker__track span { flex-shrink: 0; }
+
+  /* Animations */
+  @keyframes rise { to { transform: translateY(0); } }
+  @keyframes pop {
+    0% { opacity: 0; transform: scale(0.3) rotate(-8deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0); }
+  }
+  @keyframes float {
+    0%, 100% { translate: 0 0; }
+    50% { translate: 0 -18px; }
+  }
+  @keyframes fade { to { opacity: 1; } }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .word, .dot, .shape, .label { animation: none; opacity: 1; transform: none; }
+    .ticker__track { animation: none; }
+  }
+</style>

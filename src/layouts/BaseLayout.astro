@@ -12,9 +12,11 @@ interface Props {
   type?: 'website' | 'article';
   publishedTime?: Date;
   tags?: string[];
+  /** Bare mode: full-bleed page with no Header/Footer and no width constraint. */
+  bare?: boolean;
 }
 
-const { title, description, image, type, publishedTime, tags } = Astro.props;
+const { title, description, image, type, publishedTime, tags, bare = false } = Astro.props;
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +31,7 @@ const { title, description, image, type, publishedTime, tags } = Astro.props;
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <ViewTransitions />
     <script is:inline>
       // Prevent theme flash - runs before page renders
@@ -41,10 +43,16 @@ const { title, description, image, type, publishedTime, tags } = Astro.props;
     </script>
   </head>
   <body class="min-h-screen flex flex-col">
-    <Header />
-    <main class="flex-1 max-w-4xl mx-auto px-4 py-8 w-full">
+    {bare ? (
       <slot />
-    </main>
-    <Footer />
+    ) : (
+      <Fragment>
+        <Header />
+        <main class="flex-1 max-w-4xl mx-auto px-4 py-8 w-full">
+          <slot />
+        </main>
+        <Footer />
+      </Fragment>
+    )}
   </body>
 </html>
