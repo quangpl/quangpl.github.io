@@ -147,16 +147,33 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     position: relative;
     z-index: 3;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    /* Air between the stacked lines so it reads easily (scales with type) */
+    gap: 0.12em;
     font-family: 'Anton', 'Inter', sans-serif;
     font-weight: 400;
     text-transform: uppercase;
-    line-height: 0.86;
-    letter-spacing: -0.01em;
-    font-size: clamp(3.4rem, 17vw, 15rem);
+    line-height: 0.92;
+    letter-spacing: 0;
+    font-size: clamp(3.4rem, 16vw, 14rem);
+  }
+  /* Anchoring accent rule under the statement */
+  .statement::after {
+    content: '';
+    align-self: flex-start;
+    margin-top: clamp(0.7rem, 1.6vw, 1.6rem);
+    width: clamp(3.5rem, 20vw, 11rem);
+    height: clamp(7px, 0.9vw, 14px);
+    background: var(--accent);
+    transform-origin: left center;
+    animation: grow 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
   }
   .line {
     display: block;
     overflow: hidden;
+    /* small vertical padding keeps tall caps from clipping at looser leading */
+    padding-block: 0.02em;
   }
   .word {
     display: inline-block;
@@ -212,10 +229,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     50% { translate: 0 -18px; }
   }
   @keyframes fade { to { opacity: 1; } }
+  @keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
   @keyframes marquee { to { transform: translateX(-50%); } }
 
   @media (prefers-reduced-motion: reduce) {
     .word, .dot, .shape, .label { animation: none; opacity: 1; transform: none; }
+    .statement::after { animation: none; transform: none; }
     .ticker__track { animation: none; }
   }
 
@@ -251,7 +270,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     }
     .statement {
       font-size: clamp(2.9rem, 17vw, 4.6rem);
-      letter-spacing: -0.02em;
+      letter-spacing: -0.01em;
+      gap: 0.1em;
     }
     .label { font-size: 0.62rem; letter-spacing: 0.13em; }
     .label--tl { top: 1.25rem; left: 1.25rem; }
